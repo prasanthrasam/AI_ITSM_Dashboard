@@ -1,13 +1,15 @@
 AI-POWERED ITSM DASHBOARD & RAG KNOWLEDGE ASSISTANT
 
-LIVE APPLICATION
+**LIVE APPLICATION**
 Streamlit: https://ai-itsm-dashboard.streamlit.app/
 GitHub: https://github.com/prasanthrasam/AI_ITSM_Dashboard
 
-PROJECT OVERVIEW
+(Use the Excel file placed in "data" folder to upload)
+
+**PROJECT OVERVIEW**
 This project is an AI-powered IT Service Management (ITSM) platform combining an interactive ITSM dashboard with KPI cards, graphical analytics, trend analysis, and an AI-powered RAG Knowledge Assistant.
 
-KEY CAPABILITIES
+**KEY CAPABILITIES**
 •	Interactive ITSM Dashboard
 •	KPI cards and operational metrics
 •	Interactive Plotly graphs and trend analysis
@@ -21,7 +23,7 @@ KEY CAPABILITIES
 •	ChromaDB vector database
 •	Streamlit Cloud deployment
 
-SOLUTION ARCHITECTURE
+**SOLUTION ARCHITECTURE**
 
                          AI-POWERED ITSM PLATFORM
                                   |
@@ -69,10 +71,10 @@ SOLUTION ARCHITECTURE
                                  v
                          STREAMLIT CLOUD
 
-ITSM DASHBOARD
+I**TSM DASHBOARD**
 The dashboard provides a visual view of ITSM operational data and performance.
 
-Dashboard capabilities:
+**Dashboard capabilities:**
 •	KPI cards
 •	Interactive charts
 •	Trend analysis
@@ -82,7 +84,8 @@ Dashboard capabilities:
 •	Plotly-based graphs
 •	ITSM performance insights
 
-Dashboard workflow:
+**Dashboard workflow:**
+
 ITSM Data
   ↓
 Data Processing using Pandas
@@ -97,17 +100,17 @@ Interactive Streamlit Dashboard
 
 The dashboard transforms ITSM data into meaningful operational insights through KPIs, trends, and graphical analysis.
 
-AI KNOWLEDGE ASSISTANT
+**AI KNOWLEDGE ASSISTANT**
 The second major component is a RAG-based ITSM Knowledge Assistant.
 
-Example questions:
+**Example questions:**
 •	What is an incident?
 •	What is a problem?
 •	What is a P1 incident?
 •	What is the difference between Incident and Problem Management?
 •	What is the incident management lifecycle?
 
-RAG WORKFLOW
+**RAG WORKFLOW**
 
 ITSM PDF DOCUMENTS
         ↓
@@ -134,7 +137,7 @@ GPT-4o
         ↓
 Grounded ITSM Answer
 
-GROUNDED AI RESPONSE
+**GROUNDED AI RESPONSE**
 The assistant is instructed to use only information retrieved from the uploaded ITSM documents.
 
 If the answer is not available in the retrieved context, it responds:
@@ -142,7 +145,7 @@ If the answer is not available in the retrieved context, it responds:
 
 This helps keep the assistant focused on the knowledge base and reduce unsupported answers.
 
-TECHNOLOGY STACK
+**TECHNOLOGY STACK**
 •	Python – application development
 •	Streamlit – web application and dashboard
 •	Pandas – data processing and analytics
@@ -156,8 +159,8 @@ TECHNOLOGY STACK
 •	GitHub – source-code management
 •	Streamlit Cloud – cloud deployment
 
-PROJECT STRUCTURE
-
+**PROJECT STRUCTURE
+**
 AI_ITSM_Dashboard/
 │
 ├── app.py
@@ -176,7 +179,7 @@ AI_ITSM_Dashboard/
 
 Note: chroma_db/ and .env are excluded from GitHub through .gitignore.
 
-END-TO-END APPLICATION WORKFLOW
+**END-TO-END APPLICATION WORKFLOW**
 
                     USER
                       |
@@ -220,13 +223,13 @@ Live ITSM Dashboard + AI Assistant
 
 OpenAI API credentials are stored securely using Streamlit Secrets and are not hard-coded in the application.
 
-SECURITY
+**SECURITY**
 •	API keys are not stored in source code.
 •	Local configuration uses environment variables.
 •	Cloud configuration uses Streamlit Secrets.
 •	The OpenAI API key should never be committed to GitHub.
 
-ITSM USE CASES
+**ITSM USE CASES**
 •	Incident Management
 •	Problem Management
 •	Change Management
@@ -238,15 +241,15 @@ ITSM USE CASES
 •	ITSM process knowledge retrieval
 •	AI-assisted service management
 
-BUSINESS VALUE
+**BUSINESS VALUE**
 
 Traditional ITSM Analytics:
 ITSM Data → Pandas → KPIs → Graphs → Operational Insights
 
-AI Knowledge Management:
+**AI Knowledge Management:**
 ITSM Documents → Embeddings → Vector Database → RAG → GPT-4o → Knowledge Answer
 
-Combined solution:
+**Combined solution:**
 ITSM Data + ITSM Knowledge
         ↓
 AI-Powered ITSM Platform
@@ -257,7 +260,7 @@ KPIs, Graphs and AI Answers
         ↓
 Better ITSM Insights
 
-TESTING
+**TESTING**
 The RAG assistant was tested with:
 •	What is an incident? – Correct
 •	What is a problem? – Correct
@@ -267,7 +270,7 @@ The RAG assistant was tested with:
 
 The application was tested locally and on Streamlit Cloud.
 
-LOCAL SETUP
+L**OCAL SETUP**
 
 git clone https://github.com/prasanthrasam/AI_ITSM_Dashboard.git
 cd AI_ITSM_Dashboard
@@ -295,7 +298,7 @@ OpenAI Embeddings
  ↓
 ChromaDB
 
-Current configuration:
+**Current configuration:**
 •	Chunk size: 1500
 •	Chunk overlap: 300
 •	Embedding model: text-embedding-3-small
@@ -304,7 +307,7 @@ Current configuration:
 •	Retrieved documents: Top 5
 •	LLM: GPT-4o
 
-FUTURE ENHANCEMENTS
+**FUTURE ENHANCEMENTS**
 •	Real-time ITSM data integration
 •	ServiceNow integration
 •	Incident prediction
@@ -319,7 +322,7 @@ FUTURE ENHANCEMENTS
 •	Advanced ITSM analytics
 •	Feedback-based RAG improvement
 
-KEY LEARNING OUTCOMES
+**KEY LEARNING OUTCOMES**
 •	ITSM process knowledge
 •	Data analytics
 •	Python programming
@@ -335,12 +338,12 @@ KEY LEARNING OUTCOMES
 •	GitHub
 •	AI-assisted knowledge management
 
-AUTHOR
+**AUTHOR**
 Prasanth Rasam
 
 ITSM | Service Management | Data Analytics | Python | Generative AI | RAG | Agentic AI | Lean Six Sigma
 
-PROJECT LINKS
+**PROJECT LINKS**
 Live Streamlit Application:
 https://ai-itsm-dashboard.streamlit.app/
 
