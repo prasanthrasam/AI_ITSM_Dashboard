@@ -1,0 +1,30 @@
+# Dashboard
+streamlit
+pandas
+numpy
+plotly
+openpyxl
+streamlit-option-menu
+
+# Environment Variables
+python-dotenv
+
+# OpenAI
+openai
+
+# LangChain
+langchain
+langchain-openai
+langchain-community
+
+# Vector Database
+chromadb
+
+# PDF Processing
+
+
+pypdf
+
+# Tokenizer
+tiktoken
+langchain-text-splitters
