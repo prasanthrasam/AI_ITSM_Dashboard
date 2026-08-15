@@ -124,4 +124,9 @@ Grounded ITSM Answer
                               ▼
                     STREAMLIT CLOUD DEPLOYMENT
 
+🔹 Technology Stack
 
+Python | Streamlit | Pandas | Plotly | LangChain | OpenAI | ChromaDB | RAG | GitHub | Streamlit Cloud
+
+Author: Prasanth Rasam
+ITSM | Service Management | Data Analytics | Generative AI | RAG
