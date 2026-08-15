@@ -28,24 +28,24 @@ from services.ingest import ingest_documents
 # ----------------------------------------------------------
 # INITIALIZE RAG KNOWLEDGE BASE
 # ----------------------------------------------------------
+# ==========================================================
+# Initialize RAG Knowledge Base
+# ==========================================================
 
-if not os.path.exists("chroma_db"):
-
+if "rag_initialized" not in st.session_state:
     with st.spinner("📚 Preparing ITSM knowledge base..."):
-
         try:
-
             chunks = ingest_documents()
 
-            st.success(
-                f"✅ ITSM knowledge base ready ({chunks} chunks)"
-            )
+            st.session_state.rag_initialized = True
+            st.session_state.rag_chunks = chunks
+
+            print(f"✅ ITSM knowledge base ready: {chunks} chunks")
 
         except Exception as e:
-
-            st.error(
-                f"❌ Knowledge base initialization failed: {e}"
-            )
+            st.session_state.rag_initialized = False
+            st.error(f"❌ Knowledge base initialization failed: {e}")
+            print(f"❌ Knowledge base error: {e}")
 
 def convert_df_to_excel(df):
     """Convert dataframe to Excel for download"""

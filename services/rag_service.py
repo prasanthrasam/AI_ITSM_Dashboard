@@ -7,18 +7,10 @@ load_dotenv()
 
 DB_PATH = "chroma_db"
 
-# ==========================================================
-# Embedding Model
-# ==========================================================
-
 embedding = OpenAIEmbeddings(
     model="text-embedding-3-small"
 )
 
-
-# ==========================================================
-# Get Retriever
-# ==========================================================
 
 def get_retriever():
 
@@ -27,59 +19,35 @@ def get_retriever():
         embedding_function=embedding
     )
 
-    retriever = vectordb.as_retriever(
-        search_type="mmr",
-        search_kwargs={
-            "k": 5,
-            "fetch_k": 20
-        }
+    return vectordb.as_retriever(
+        search_type="similarity",
+        search_kwargs={"k": 5}
     )
 
-    return retriever
-
-
-# ==========================================================
-# Prompt Template
-# ==========================================================
 
 PROMPT = """
-You are an expert IT Service Management (ITSM) AI Assistant.
+You are an ITSM Knowledge Assistant.
 
-Use ONLY the provided context to answer the user's question.
+Use ONLY the information provided in the context.
 
-Instructions:
-- Answer only from the provided context.
-- If the answer exists, explain it clearly and professionally.
-- If the answer is partially available, answer with the available information.
-- Only reply with:
+If the answer is not present in the context, say:
+
 "I couldn't find that information in the uploaded documents."
-if the context truly does not contain the answer.
 
 Context:
 {context}
 
 Question:
 {question}
-
-Answer:
 """
 
 prompt = ChatPromptTemplate.from_template(PROMPT)
-
-
-# ==========================================================
-# LLM
-# ==========================================================
 
 llm = ChatOpenAI(
     model="gpt-4o",
     temperature=0
 )
 
-
-# ==========================================================
-# RAG Function
-# ==========================================================
 
 def ask_rag(question: str):
 
@@ -92,7 +60,7 @@ def ask_rag(question: str):
     print(question)
     print("=" * 80)
 
-    print(f"\nRetrieved {len(docs)} document(s)\n")
+    print(f"Retrieved {len(docs)} document(s)")
 
     if not docs:
         return (
@@ -100,37 +68,12 @@ def ask_rag(question: str):
             []
         )
 
-    # ------------------------------------------------------
-    # Print retrieved chunks
-    # ------------------------------------------------------
-
-    for i, doc in enumerate(docs):
-
-        print(f"\n---------- DOCUMENT {i+1} ----------")
-
-        page = doc.metadata.get("page", "Unknown")
-
-        print(f"Page : {page}")
-        print(doc.page_content[:1000])
-
-    print("\n" + "=" * 80)
-
-    # ------------------------------------------------------
-    # Combine Context
-    # ------------------------------------------------------
-
     context = "\n\n".join(
         doc.page_content
         for doc in docs
     )
 
-    # ------------------------------------------------------
-    # Invoke LLM
-    # ------------------------------------------------------
-
-    chain = prompt | llm
-
-    response = chain.invoke(
+    response = (prompt | llm).invoke(
         {
             "context": context,
             "question": question
