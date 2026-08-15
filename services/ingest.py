@@ -94,3 +94,5 @@ def ingest_documents():
     )
 
     return len(chunks)
+if __name__ == "__main__":
+    ingest_documents()
