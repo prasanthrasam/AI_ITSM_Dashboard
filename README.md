@@ -125,15 +125,3 @@ Grounded ITSM Answer
                     STREAMLIT CLOUD DEPLOYMENT
 
 
-
-So yes — **the dashboard is an important part of the project and should be prominent in your README**.
-
-I would actually change the project title from:
-
-> **AI-Powered ITSM Knowledge Assistant**
-
-to:
-
-> **🤖 AI-Powered ITSM Dashboard & Knowledge Assistant**
-
-That better represents what you've actually built and is **much stronger for your portfolio/resume**, because it demonstrates **ITSM analytics + Python + visualization + RAG + GenAI + cloud deployment** in one project.
