@@ -1,40 +1,47 @@
 from dotenv import load_dotenv
-
 from langchain_community.vectorstores import Chroma
 from langchain_openai import ChatOpenAI, OpenAIEmbeddings
 from langchain_core.prompts import ChatPromptTemplate
 
 load_dotenv()
 
+DB_PATH = "chroma_db"
+
 # ==========================================================
-# Load Embedding Model
+# Embedding Model
 # ==========================================================
+
 embedding = OpenAIEmbeddings(
     model="text-embedding-3-small"
 )
 
-# ==========================================================
-# Load Chroma Database
-# ==========================================================
-vectordb = Chroma(
-    persist_directory="chroma_db",
-    embedding_function=embedding
-)
 
 # ==========================================================
-# Retriever
+# Get Retriever
 # ==========================================================
-retriever = vectordb.as_retriever(
-    search_type="mmr",
-    search_kwargs={
-        "k": 5,
-        "fetch_k": 20
-    }
-)
+
+def get_retriever():
+
+    vectordb = Chroma(
+        persist_directory=DB_PATH,
+        embedding_function=embedding
+    )
+
+    retriever = vectordb.as_retriever(
+        search_type="mmr",
+        search_kwargs={
+            "k": 5,
+            "fetch_k": 20
+        }
+    )
+
+    return retriever
+
 
 # ==========================================================
 # Prompt Template
 # ==========================================================
+
 PROMPT = """
 You are an expert IT Service Management (ITSM) AI Assistant.
 
@@ -59,18 +66,24 @@ Answer:
 
 prompt = ChatPromptTemplate.from_template(PROMPT)
 
+
 # ==========================================================
 # LLM
 # ==========================================================
+
 llm = ChatOpenAI(
     model="gpt-4o",
     temperature=0
 )
 
+
 # ==========================================================
 # RAG Function
 # ==========================================================
+
 def ask_rag(question: str):
+
+    retriever = get_retriever()
 
     docs = retriever.invoke(question)
 
@@ -88,8 +101,9 @@ def ask_rag(question: str):
         )
 
     # ------------------------------------------------------
-    # Print retrieved chunks for debugging
+    # Print retrieved chunks
     # ------------------------------------------------------
+
     for i, doc in enumerate(docs):
 
         print(f"\n---------- DOCUMENT {i+1} ----------")
@@ -102,8 +116,9 @@ def ask_rag(question: str):
     print("\n" + "=" * 80)
 
     # ------------------------------------------------------
-    # Combine retrieved context
+    # Combine Context
     # ------------------------------------------------------
+
     context = "\n\n".join(
         doc.page_content
         for doc in docs
@@ -112,6 +127,7 @@ def ask_rag(question: str):
     # ------------------------------------------------------
     # Invoke LLM
     # ------------------------------------------------------
+
     chain = prompt | llm
 
     response = chain.invoke(

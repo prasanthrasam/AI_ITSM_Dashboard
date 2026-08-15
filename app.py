@@ -20,7 +20,32 @@ from components.filters import create_filters
 from components.kpi_cards import kpi_card
 from services.data_loader import dataset_summary, load_excel
 from components.rag_chat import rag_chat
+import os
 
+from services.ingest import ingest_documents
+
+
+# ----------------------------------------------------------
+# INITIALIZE RAG KNOWLEDGE BASE
+# ----------------------------------------------------------
+
+if not os.path.exists("chroma_db"):
+
+    with st.spinner("📚 Preparing ITSM knowledge base..."):
+
+        try:
+
+            chunks = ingest_documents()
+
+            st.success(
+                f"✅ ITSM knowledge base ready ({chunks} chunks)"
+            )
+
+        except Exception as e:
+
+            st.error(
+                f"❌ Knowledge base initialization failed: {e}"
+            )
 
 def convert_df_to_excel(df):
     """Convert dataframe to Excel for download"""
